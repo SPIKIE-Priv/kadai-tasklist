@@ -11,8 +11,8 @@
                 
 
             @endforeach
-                             {!! link_to_route('tasks.create', '新規タスクの登録') !!}
+                             
         </ul>
     @endif
-
+{!! link_to_route('tasks.create', '新規タスクの登録') !!}
 @endsection
