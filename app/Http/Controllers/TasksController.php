@@ -50,9 +50,11 @@ class TasksController extends Controller
     {
             $this->validate($request, [
             'content' => 'required|max:255',
+            'status' => 'required|max:10',   // 追加
         ]);
         $tasks = new Tasklist;
         $tasks->content = $request->content;
+        $tasks->status = $request->status;    // 追加
         $tasks->save();
 
         return redirect('/');
@@ -74,7 +76,7 @@ class TasksController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editingmysql the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -99,10 +101,12 @@ class TasksController extends Controller
     {
             $this->validate($request, [
             'content' => 'required|max:255',
+            'status' => 'required|max:10',   // 追加
         ]);
         
         $tasks = Tasklist::find($id);
         $tasks->content = $request->content;
+        $tasks->status = $request->status;    // 追加
         $tasks->save();
 
         return redirect('/');
