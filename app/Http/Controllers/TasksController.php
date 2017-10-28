@@ -56,14 +56,13 @@ class TasksController extends Controller
             'content' => 'required|max:255',
             'status' => 'required|max:10',   // 追加
         ]);
-        $tasks = new Tasklist;
-        $tasks->content = $request->content;
-        $tasks->status = $request->status;    // 追加
-        $tasks->save();
+        //$tasks = new Tasklist;
+        //$tasks->content = $request->content;
+        //$tasks->status = $request->status;    // 追加
+        //$tasks->save();
         
          
         $request->user()->tasks()->create(['status' => $request->status, 'content' => $request->content,]);
-
 
         return redirect('/');
     }
