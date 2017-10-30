@@ -37,6 +37,11 @@ class TasksController extends Controller
      */
     public function create()
     {
+         $data = [];
+        if (\Auth::check()) {
+            $user = \Auth::user();
+        }
+        
         $tasks = new Tasklist;
 
         return view('tasks.create', [
@@ -74,12 +79,12 @@ class TasksController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
+    {		
+       
         $tasks = Tasklist::find($id);
-
         return view('tasks.show', [
             'tasks' => $tasks,
-        ]);
+             ]);
     }
 
     /**
@@ -128,8 +133,9 @@ class TasksController extends Controller
     public function destroy($id)
     {
         $tasks = Tasklist::find($id);
+        if (\Auth::user()->id === $tasks->user_id) {
         $tasks->delete();
-
+}
         return redirect('/');
     }
 }

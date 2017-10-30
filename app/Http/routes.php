@@ -16,11 +16,9 @@ Route::get('/', 'WelcomeController@index');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('users', 'UsersController', ['only' => ['index', 'show']]);
-    Route::resource('tasks', 'TasksController', ['only' => ['store', 'destroy']]);
+    Route::resource('tasks', 'TasksController');
 });
 
-
-Route::resource('tasks', 'TasksController');
 
 // ユーザ登録
 Route::get('signup', 'Auth\AuthController@getRegister')->name('signup.get');
