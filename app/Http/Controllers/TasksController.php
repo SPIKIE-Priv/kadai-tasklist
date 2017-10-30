@@ -79,12 +79,17 @@ class TasksController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {		
-       
-        $tasks = Tasklist::find($id);
-        return view('tasks.show', [
-            'tasks' => $tasks,
-             ]);
+    {	
+        
+             $task = Tasklist::find($id);
+        if (\Auth::user()->id === $task->user_id) {
+            return view('tasks.show', [
+                'tasks' => $task,
+            ]);
+        }else{
+            return redirect('/');
+        }
+
     }
 
     /**
